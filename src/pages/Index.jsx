@@ -1,6 +1,6 @@
 import { Container, VStack, Box, Heading, Text, Input, Textarea, Button, Flex, IconButton } from "@chakra-ui/react";
 import { useState } from "react";
-import { FaThumbsUp } from "react-icons/fa";
+import { FaThumbsUp, FaFlag } from "react-icons/fa";
 
 const Index = () => {
   const [posts, setPosts] = useState([]);
@@ -10,7 +10,7 @@ const Index = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title && content) {
-      setPosts([{ title, content, likes: 0 }, ...posts]);
+      setPosts([{ title, content, likes: 0, flags: 0 }, ...posts]);
       setTitle("");
       setContent("");
     }
@@ -19,6 +19,12 @@ const Index = () => {
   const handleLike = (index) => {
     const newPosts = [...posts];
     newPosts[index].likes += 1;
+    setPosts(newPosts);
+  };
+
+  const handleFlag = (index) => {
+    const newPosts = [...posts];
+    newPosts[index].flags += 1;
     setPosts(newPosts);
   };
 
@@ -61,6 +67,15 @@ const Index = () => {
                     aria-label="Like"
                   />
                   <Text ml={2}>{post.likes}</Text>
+                  <IconButton
+                    icon={<FaFlag />}
+                    onClick={() => handleFlag(index)}
+                    colorScheme="red"
+                    variant="outline"
+                    aria-label="Flag"
+                    ml={4}
+                  />
+                  <Text ml={2}>{post.flags}</Text>
                 </Flex>
               </Box>
             ))
