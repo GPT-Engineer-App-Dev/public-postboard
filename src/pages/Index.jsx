@@ -42,7 +42,7 @@ const Index = () => {
             onChange={(e) => setContent(e.target.value)}
             mb={3}
           />
-          <Button type="submit" colorScheme="blue" w="100%">Submit</Button>
+          <Button type="submit" colorScheme="green" w="100%">Submit</Button>
         </Box>
         <VStack spacing={4} w="100%">
           {posts.length === 0 ? (
